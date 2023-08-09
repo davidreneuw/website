@@ -1,0 +1,44 @@
+{
+  "landing": {
+    "title": "Hi, I'm David!",
+    "subtitles": [
+      "I am a software developer based in Hamilton, Canada. I graduated B.Sc Honours Mathematical Physics from the University of Waterloo with a minor in astrophysics and a minor in German.",
+      "I am currently working as a programmer-analyst for Shared Services Canada, where I use Blazor, C# and Azure to develop a cloud-based analytics platform for Canadian scientists.",
+      "Please feel free to contact me if you have any questions, or if you would like to chat!"
+    ],
+    "pictureName": "david.jpg",
+    "signatureName": "signature.png"
+  },
+  "sections": [
+    {
+      "title": "Home",
+      "id": "home",
+      "content": ""
+    },
+    {
+      "title": "About",
+      "id": "about",
+      "content": ""
+    },
+    {
+      "title": "Experience",
+      "id": "experience",
+      "content": ""
+    },
+    {
+      "title": "Education",
+      "id": "education",
+      "content": ""
+    },
+    {
+      "title": "Projects",
+      "id": "projects",
+      "content": ""
+    },
+    {
+      "title": "Contact me",
+      "id": "contact",
+      "content": ""
+    }
+  ]
+}
