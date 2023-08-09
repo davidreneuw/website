@@ -7,7 +7,21 @@
       "Please feel free to contact me if you have any questions, or if you would like to chat!"
     ],
     "pictureName": "david.jpg",
-    "signatureName": "signature.png"
+    "signatureName": "signature.png",
+    "socialMedia": [
+      {
+        "name": "LinkedIn",
+        "url": "https://www.linkedin.com/in/david-ren%C3%A9-157696198/"
+      },
+      {
+        "name": "GitHub",
+        "url": "https://github.com/davidreneuw"
+      },
+      {
+        "name": "Email",
+        "url": "mailto:davrene11@gmail.com"
+      }
+    ]
   },
   "sections": [
     {

@@ -118,6 +118,15 @@ hr {
   margin: 1em 0 0 0;
 }
 
+.social-media-icon {
+  margin: 2em 1em 0 0em;
+}
+
+.social-media-list {
+  display: flex;
+  flex-direction: row;
+}
+
 @keyframes typewriter {
   from {
     width: 0%;
