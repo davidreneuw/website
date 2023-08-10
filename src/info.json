@@ -27,32 +27,51 @@
     {
       "title": "Home",
       "id": "home",
-      "content": ""
+      "contentType": "card",
+      "content": [""]
     },
     {
       "title": "About",
       "id": "about",
-      "content": "test2"
+      "contentType": "card",
+      "content": [
+        {
+          "title": "About me",
+          "content": "I am a software developer based in Hamilton, Canada. I graduated B.Sc Honours Mathematical Physics from the University of Waterloo with a minor in astrophysics and a minor in German."
+        },
+        {
+          "title": "Current work",
+          "content": "I am currently working as a programmer-analyst for Shared Services Canada, where I use Blazor, C# and Azure to develop a cloud-based analytics platform for Canadian scientists."
+        },
+        {
+          "title": "Interests",
+          "content": "I am interested in all things tech, especially web development, machine learning, and data science. I also enjoy reading, playing the piano, and learning languages."
+        }
+      ]
     },
     {
       "title": "Experience",
       "id": "experience",
-      "content": ""
+      "contentType": "card",
+      "content": [""]
     },
     {
       "title": "Education",
       "id": "education",
-      "content": ""
+      "contentType": "card",
+      "content": [""]
     },
     {
       "title": "Projects",
       "id": "projects",
-      "content": ""
+      "contentType": "card",
+      "content": [""]
     },
     {
       "title": "Contact me",
       "id": "contact",
-      "content": ""
+      "contentType": "card",
+      "content": [""]
     }
   ]
 }

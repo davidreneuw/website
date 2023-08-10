@@ -3,7 +3,7 @@
   border-radius: 20px;
   background: #fcfbfb;
   position: relative;
-  padding: 1.8rem;
+  padding: 0.5em 1.8rem 1.8rem 1.8rem;
   border: 2px solid #ffffff;
   transition: 0.5s ease-out;
   overflow: visible;
@@ -14,7 +14,7 @@
   height: 100%;
   gap: 0.5em;
   display: grid;
-  place-content: center;
+  place-content: left;
 }
 
 .text-body {

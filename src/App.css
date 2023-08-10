@@ -38,6 +38,7 @@ hr {
   text-decoration: none;
   border-radius: 10px;
   font-size: 26px;
+  font-weight: 600;
   margin: 0.5em 0 0.5em 0;
   background: var(--text-colour);
   -webkit-background-clip: text;
@@ -50,6 +51,10 @@ hr {
   background: var(--primary-colour);
   -webkit-background-clip: border-box;
   -webkit-text-fill-color: #ffffff;
+}
+
+.card-container {
+  margin: 1em 3.8em 0 0;
 }
 
 .main {
@@ -85,8 +90,14 @@ hr {
 }
 
 .landing-title-container {
-  display: inline-block;
   width: fit-content;
+  justify-content: left;
+  align-items: left;
+}
+
+.landing-title {
+  justify-content: left;
+  align-content: baseline;
 }
 
 .landing-subtitle {
@@ -94,9 +105,8 @@ hr {
 }
 
 .line-1 {
-  position: relative;
   top: 50%;
-  margin: 0 auto;
+  margin: 0 0 0 0;
   border-right: 2px solid var(--primary-colour);
   white-space: nowrap;
   overflow: hidden;

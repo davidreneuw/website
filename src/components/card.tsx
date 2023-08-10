@@ -4,9 +4,9 @@ function Card(props: any) {
   return (
     <div className="card">
       <div className="card-details">
-        <p className="text-title" id={props.id}>
+        <h2 className="text-title" id={props.id}>
           {props.title}
-        </p>
+        </h2>
         <p className="text-body">{props.content}</p>
       </div>
     </div>

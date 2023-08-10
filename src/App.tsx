@@ -1,5 +1,6 @@
 import { SocialIcon } from "react-social-icons";
 import "./App.css";
+import Card from "./components/card";
 import Info from "./info.json";
 
 function App() {
@@ -59,12 +60,28 @@ function App() {
               <h1 className="section-title" id={section.id}>
                 {section.title}
               </h1>
+              {getContent(section)}
               <hr />
             </div>
           ))}
       </div>
     </div>
   );
+}
+
+function getContent(section: any) {
+  switch (section.contentType) {
+    case "card":
+      return section.content.map((content: any) => (
+        <div className="card-container">
+          <Card
+            id={content.id}
+            title={content.title}
+            content={content.content}
+          />
+        </div>
+      ));
+  }
 }
 
 export default App;

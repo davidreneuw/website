@@ -4,8 +4,8 @@
   --bg-colour: #ffffff;
   --text-colour: -webkit-linear-gradient(
     225deg,
-    rgba(173, 215, 246, 1) 35%,
-    rgba(63, 142, 252, 1) 100%
+    rgb(184, 205, 247) 35%,
+    var(--primary-colour) 100%
   );
 }
 
