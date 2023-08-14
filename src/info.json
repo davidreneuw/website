@@ -28,24 +28,29 @@
       "title": "Home",
       "id": "home",
       "contentType": "card",
-      "content": [""]
+      "contents": [""]
     },
     {
       "title": "About",
       "id": "about",
-      "contentType": "card",
-      "content": [
+      "contents": [
         {
           "title": "About me",
-          "content": "I am a software developer based in Hamilton, Canada. I graduated B.Sc Honours Mathematical Physics from the University of Waterloo with a minor in astrophysics and a minor in German."
+          "content": "I am a software developer based in Hamilton, Canada. I graduated B.Sc Honours Mathematical Physics from the University of Waterloo with a minor in astrophysics and a minor in German.",
+          "contentType": "card",
+          "tags": ["info", "react"]
         },
         {
           "title": "Current work",
-          "content": "I am currently working as a programmer-analyst for Shared Services Canada, where I use Blazor, C# and Azure to develop a cloud-based analytics platform for Canadian scientists."
+          "content": "I am currently working as a programmer-analyst for Shared Services Canada, where I use Blazor, C# and Azure to develop a cloud-based analytics platform for Canadian scientists.",
+          "contentType": "card",
+          "tags": ["info"]
         },
         {
           "title": "Interests",
-          "content": "I am interested in all things tech, especially web development, machine learning, and data science. I also enjoy reading, playing the piano, and learning languages."
+          "content": "I am interested in all things tech, especially web development, machine learning, and data science. I also enjoy reading, playing the piano, and learning languages.",
+          "contentType": "card",
+          "tags": ["info"]
         }
       ]
     },
@@ -53,25 +58,25 @@
       "title": "Experience",
       "id": "experience",
       "contentType": "card",
-      "content": [""]
+      "contents": [""]
     },
     {
       "title": "Education",
       "id": "education",
       "contentType": "card",
-      "content": [""]
+      "contents": [""]
     },
     {
       "title": "Projects",
       "id": "projects",
       "contentType": "card",
-      "content": [""]
+      "contents": [""]
     },
     {
       "title": "Contact me",
       "id": "contact",
       "contentType": "card",
-      "content": [""]
+      "contents": [""]
     }
   ]
 }
