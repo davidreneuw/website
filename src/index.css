@@ -4,9 +4,12 @@
   --bg-colour: #ffffff;
   --text-colour: -webkit-linear-gradient(
     225deg,
-    rgb(184, 205, 247) 35%,
+    rgb(123, 167, 255) 35%,
     var(--primary-colour) 100%
   );
+  --dropcard-height: 200px;
+  --dropcard-transition: max-height 0.5s ease-in-out;
+  --card-text-colour: rgb(68, 68, 68);
 }
 
 html {

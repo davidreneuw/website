@@ -1,26 +1,30 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SocialIcon } from "react-social-icons";
 import "./App.css";
 import Card from "./components/card";
+import { DropCard } from "./components/dropcard";
 import Info from "./info.json";
 
-interface Section {
+type Section = {
   title: string;
   id: string;
   contents: Content[];
-}
+};
 
-interface Content {
+type Content = {
   title: string;
-  content: string;
+  subtitle?: string;
+  content: string[];
   contentType: "card" | "dropcard";
   tags?: Filter[];
-}
+  url?: string;
+  codeUrl?: string;
+};
 
-interface Filter {
+type Filter = {
   name: string;
   active: boolean;
-}
+};
 
 /**
  * The main component of the application.
@@ -28,9 +32,11 @@ interface Filter {
  * @returns The App component.
  */
 const App = () => {
+  const ALWAYS_ACTIVE = ["info"];
   const [sections, setSection] = useState<Section[]>(loadSections());
   const [filters, setFilters] = useState<Filter[]>(loadFilters());
-  const ALWAYS_ACTIVE = ["info"];
+
+  useEffect(() => {}, [filters]);
 
   /**
    * Returns the JSX element for the given content if it matches the active filters.
@@ -38,16 +44,30 @@ const App = () => {
    * @returns The JSX element for the given content if it matches the active filters, otherwise null.
    */
   function getContent(content: Content) {
+    const activeFilters = getActiveFilters();
     if (
-      content.tags?.some((t) =>
-        filters.some((f) => f.name === t.name && f.active)
-      )
+      activeFilters.length === ALWAYS_ACTIVE.length ||
+      content.tags?.some((t) => activeFilters.includes(t))
     ) {
       switch (content.contentType) {
         case "card":
           return (
             <div className="card-container">
               <Card title={content.title} content={content.content} />
+            </div>
+          );
+        case "dropcard":
+          return (
+            <div className="dropcard-container">
+              <DropCard
+                title={content.title}
+                subtitle={content.subtitle}
+                content={content.content}
+                tags={content.tags?.map((t) => t.name) || []}
+                active={false}
+                url={content.url}
+                codeUrl={content.codeUrl}
+              />
             </div>
           );
       }
@@ -69,6 +89,7 @@ const App = () => {
         contents: section.contents.map((content: any) => {
           const cont: Content = {
             title: content.title,
+            subtitle: content.subtitle,
             content: content.content,
             contentType: content.contentType,
             tags: content.tags?.map((tag: string) => {
@@ -78,6 +99,8 @@ const App = () => {
               }
               return t;
             }),
+            url: content.url,
+            codeUrl: content.codeUrl,
           };
           return cont;
         }),
@@ -96,13 +119,30 @@ const App = () => {
     sections.forEach((section) => {
       section.contents.forEach((content) => {
         content.tags?.forEach((tag) => {
-          if (!filtLst.includes(tag)) {
+          if (!getActiveFiltersNames(filtLst).includes(tag.name)) {
             filtLst.push(tag);
           }
         });
       });
     });
     return filtLst;
+  }
+
+  /**
+   * Returns an array of active filters.
+   * @returns An array of Filter objects that are currently active.
+   */
+  function getActiveFilters() {
+    return filters.filter((f) => f.active);
+  }
+
+  /**
+   * Returns an array of names of active filters.
+   * @param filtLst - An optional array of filters to get the names from. Defaults to the active filters.
+   * @returns An array of names of active filters.
+   */
+  function getActiveFiltersNames(filtLst: Filter[] = getActiveFilters()) {
+    return filtLst.map((f) => f.name);
   }
 
   return (
