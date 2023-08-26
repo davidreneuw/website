@@ -174,9 +174,22 @@
       ]
     },
     {
+      "title": "Resume",
+      "id": "resume",
+      "contents": [
+        {
+          "title": "View my resume",
+          "content": ["You may view my most recent resume here."],
+          "contentType": "dropcard-resume",
+          "tags": ["info"],
+          "url": "./resume.pdf",
+          "locked": true
+        }
+      ]
+    },
+    {
       "title": "Contact me",
       "id": "contact",
-      "contentType": "card",
       "contents": [
         {
           "title": "If you would like to contact me...",

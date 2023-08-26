@@ -5,6 +5,10 @@ import Card from "./components/card";
 import { DropCard } from "./components/dropcard";
 import Info from "./info.json";
 
+// TODO: Filter
+// TODO: Expand all / collapse all
+// TODO: Mobile compatibility
+
 type Section = {
   title: string;
   id: string;
@@ -15,10 +19,12 @@ type Content = {
   title: string;
   subtitle?: string;
   content: string[];
-  contentType: "card" | "dropcard";
+  contentType: "card" | "dropcard" | "dropcard-resume";
   tags?: Filter[];
   url?: string;
   codeUrl?: string;
+  urlText?: string;
+  locked?: boolean;
 };
 
 type Filter = {
@@ -70,6 +76,22 @@ const App = () => {
               />
             </div>
           );
+        case "dropcard-resume":
+          return (
+            <div className="dropcard-container">
+              <DropCard
+                title={content.title}
+                subtitle={content.subtitle}
+                content={content.content}
+                tags={content.tags?.map((t) => t.name) || []}
+                active={true}
+                url={content.url}
+                codeUrl={content.codeUrl}
+                urlText="View resume"
+                locked={true}
+              />
+            </div>
+          );
       }
     } else {
       return null;
@@ -101,6 +123,8 @@ const App = () => {
             }),
             url: content.url,
             codeUrl: content.codeUrl,
+            urlText: content.urlText,
+            locked: content.locked,
           };
           return cont;
         }),
@@ -193,16 +217,17 @@ const App = () => {
             />
           </div>
         </div>
-        <hr />
         {sections
           .filter((section) => section.title !== "Home")
-          .map((section) => (
+          .map((rank, i, section) => (
             <div className="section">
-              <h1 className="section-title" id={section.id}>
-                {section.title}
-              </h1>
-              {section.contents.map((content) => getContent(content))}
-              <hr />
+              <div className="section-header">
+                <span className="section-title" id={section[i].id}>
+                  {section[i].title}
+                </span>
+                <hr className="section-divider" />
+              </div>
+              {section[i].contents.map((content) => getContent(content))}
             </div>
           ))}
       </div>

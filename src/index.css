@@ -10,6 +10,11 @@
   --dropcard-height: 200px;
   --dropcard-transition: max-height 0.5s ease-in-out;
   --card-text-colour: rgb(68, 68, 68);
+  --section-colour: -webkit-linear-gradient(
+    112.1deg,
+    rgb(136, 135, 135) 11.4%,
+    black 70.2%
+  );
 }
 
 html {
