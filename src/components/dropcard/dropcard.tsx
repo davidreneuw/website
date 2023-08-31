@@ -1,35 +1,27 @@
-import { useState } from "react";
 import { IoMdArrowDropright } from "react-icons/io";
-import { Tag } from "./tag";
+import { model } from "../../types";
+import { Tag } from "../tag/tag";
 
 import "./dropcard.css";
 
-interface DropCardProps {
-  title: string;
-  subtitle?: string;
-  content: string[];
-  tags?: string[];
-  active: boolean;
-  url?: string;
-  codeUrl?: string;
-  urlText?: string;
-  locked?: boolean;
-}
-
-export function DropCard(props: DropCardProps) {
-  const [active, setActive] = useState(props.active);
-
-  function toggleActive() {
-    if (props.locked) return;
-    setActive(!active);
+export function DropCard(props: model.DropCardProps) {
+  function getClass(baseClass: string) {
+    var cardClass = baseClass;
+    if (props.locked || props.state.active) {
+      cardClass += " active";
+    }
+    if (props.state.tagSelected) {
+      cardClass += " tag-selected";
+    }
+    return cardClass;
   }
 
-  function getClass(baseClass: string) {
-    return active ? baseClass + " active" : baseClass;
+  function toggle() {
+    props.toggleFunc(!props.state.active);
   }
 
   return (
-    <div className={getClass("dropcard")} onClick={toggleActive}>
+    <div className={getClass("dropcard")} onClick={toggle}>
       <div className="dropcard-header">
         {props.urlText ? (
           <div className="header-text-resume">
@@ -51,8 +43,8 @@ export function DropCard(props: DropCardProps) {
           </div>
         )}
         <div className="tags">
-          {props.tags?.map((tag: string) => (
-            <Tag tag={tag} />
+          {props.tags?.map((tag: model.Filter) => (
+            <Tag tag={tag.name} />
           ))}
         </div>
         {props.urlText ? (

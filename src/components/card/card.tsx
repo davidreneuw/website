@@ -1,6 +1,7 @@
+import { model } from "../../types";
 import "./card.css";
 
-function Card(props: any) {
+export function Card(props: model.CardProps) {
   return (
     <div className="card">
       <div className="card-details">

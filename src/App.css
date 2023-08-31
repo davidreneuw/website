@@ -150,8 +150,8 @@ hr {
   content: ">";
   color: #ffffff;
   position: relative;
-  bottom: 3px;
-  right: 2px;
+  bottom: 2px;
+  right: 8px;
   -webkit-background-clip: border-box;
   -webkit-text-fill-color: var(--primary-colour);
 }
@@ -168,7 +168,7 @@ hr {
   justify-content: end;
   align-items: right;
   border: none;
-  margin: 0 0 0 2em;
+  margin: 0 0 0 1.5em;
   transform: translateY(4px);
   border-top: 2.2px dashed rgba(70, 70, 70, 0.61);
   color: #fff;
@@ -204,5 +204,6 @@ hr {
     background: var(--primary-colour);
     -webkit-background-clip: border-box;
     -webkit-text-fill-color: #ffffff;
+    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
   }
 }

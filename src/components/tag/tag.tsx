@@ -14,6 +14,8 @@ import {
   SiVercel,
 } from "react-icons/si";
 import { Tooltip } from "react-tooltip";
+import { model } from "../../types";
+
 import "./tag.css";
 
 const iconSize = 40;
@@ -36,20 +38,17 @@ const iconMap = new Map<string, JSX.Element>([
   ["dotnet", <SiDotnet size={iconSize} />],
 ]);
 
-interface TagProps {
-  tag: string;
-}
-
-export function Tag(props: TagProps) {
+export function Tag(props: model.TagProps) {
+  const tooltipId = crypto.randomUUID();
   return (
     <>
-      <div className="tag" data-tooltip-id={props.tag}>
+      <div className="tag" data-tooltip-id={tooltipId}>
         {iconMap.get(props.tag) || (
           <div className="missing-tag">{props.tag.charAt(0).toUpperCase()}</div>
         )}
       </div>
       <Tooltip
-        id={props.tag}
+        id={tooltipId}
         place="top"
         content={props.tag.charAt(0).toUpperCase() + props.tag.slice(1)}
       />

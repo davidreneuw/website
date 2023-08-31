@@ -1,36 +1,17 @@
 import { useEffect, useState } from "react";
 import { SocialIcon } from "react-social-icons";
+
+import { Card } from "./components/card/card";
+import { DropCard } from "./components/dropcard/dropcard";
+import { FilterCard } from "./components/filter-card/filter-card";
+
 import "./App.css";
-import Card from "./components/card";
-import { DropCard } from "./components/dropcard";
 import Info from "./info.json";
+import { model } from "./types";
 
 // TODO: Filter
 // TODO: Expand all / collapse all
 // TODO: Mobile compatibility
-
-type Section = {
-  title: string;
-  id: string;
-  contents: Content[];
-};
-
-type Content = {
-  title: string;
-  subtitle?: string;
-  content: string[];
-  contentType: "card" | "dropcard" | "dropcard-resume";
-  tags?: Filter[];
-  url?: string;
-  codeUrl?: string;
-  urlText?: string;
-  locked?: boolean;
-};
-
-type Filter = {
-  name: string;
-  active: boolean;
-};
 
 /**
  * The main component of the application.
@@ -38,63 +19,77 @@ type Filter = {
  * @returns The App component.
  */
 const App = () => {
-  const ALWAYS_ACTIVE = ["info"];
-  const [sections, setSection] = useState<Section[]>(loadSections());
-  const [filters, setFilters] = useState<Filter[]>(loadFilters());
-
-  useEffect(() => {}, [filters]);
+  const [sections, setSections] = useState<model.Section[]>(loadSections());
+  const [filters, setFilters] = useState<model.Filter[]>(loadFilters());
+  useEffect(filterDropCards, [filters]);
 
   /**
    * Returns the JSX element for the given content if it matches the active filters.
    * @param content - The content to render.
    * @returns The JSX element for the given content if it matches the active filters, otherwise null.
    */
-  function getContent(content: Content) {
-    const activeFilters = getActiveFilters();
-    if (
-      activeFilters.length === ALWAYS_ACTIVE.length ||
-      content.tags?.some((t) => activeFilters.includes(t))
-    ) {
-      switch (content.contentType) {
-        case "card":
-          return (
-            <div className="card-container">
-              <Card title={content.title} content={content.content} />
-            </div>
-          );
-        case "dropcard":
-          return (
-            <div className="dropcard-container">
-              <DropCard
-                title={content.title}
-                subtitle={content.subtitle}
-                content={content.content}
-                tags={content.tags?.map((t) => t.name) || []}
-                active={false}
-                url={content.url}
-                codeUrl={content.codeUrl}
-              />
-            </div>
-          );
-        case "dropcard-resume":
-          return (
-            <div className="dropcard-container">
-              <DropCard
-                title={content.title}
-                subtitle={content.subtitle}
-                content={content.content}
-                tags={content.tags?.map((t) => t.name) || []}
-                active={true}
-                url={content.url}
-                codeUrl={content.codeUrl}
-                urlText="View resume"
-                locked={true}
-              />
-            </div>
-          );
-      }
-    } else {
-      return null;
+  function getContent(content: model.Content) {
+    switch (content.contentType) {
+      case "card":
+        return (
+          <div className="card-container">
+            <Card title={content.title} content={content.content} />
+          </div>
+        );
+      case "dropcard":
+        return (
+          <div className="dropcard-container">
+            <DropCard
+              title={content.title}
+              subtitle={content.subtitle}
+              content={content.content}
+              tags={content.tags}
+              active={false}
+              url={content.url}
+              codeUrl={content.codeUrl}
+              state={content}
+              filters={filters}
+              toggleFunc={(state: boolean) => {
+                toggleDropCard(content);
+              }}
+            />
+          </div>
+        );
+      case "dropcard-resume":
+        return (
+          <div className="dropcard-container">
+            <DropCard
+              title={content.title}
+              subtitle={content.subtitle}
+              content={content.content}
+              tags={content.tags}
+              active={true}
+              url={content.url}
+              codeUrl={content.codeUrl}
+              urlText="View resume"
+              locked={true}
+              state={content}
+              filters={filters}
+              toggleFunc={(state: boolean) => {
+                toggleDropCard(content, state);
+              }}
+            />
+          </div>
+        );
+      case "filter-card":
+        return (
+          <div className="card-container">
+            <FilterCard
+              title={content.title}
+              content={content.content}
+              filters={filters}
+              toggleFunc={toggleFilter}
+              expandFunc={expandDropCards}
+              collapseFunc={collapseDropCards}
+              clearFunc={clearFilters}
+            />
+          </div>
+        );
     }
   }
 
@@ -104,23 +99,24 @@ const App = () => {
    * @returns An array of `Section` objects.
    */
   function loadSections() {
-    const sects: Section[] = Info.sections.map((section) => {
-      const sect: Section = {
+    const sects: model.Section[] = Info.sections.map((section) => {
+      const sect: model.Section = {
         title: section.title,
         id: section.id,
         contents: section.contents.map((content: any) => {
-          const cont: Content = {
+          const cont: model.Content = {
             title: content.title,
             subtitle: content.subtitle,
             content: content.content,
             contentType: content.contentType,
             tags: content.tags?.map((tag: string) => {
-              const t: Filter = { name: tag, active: false };
-              if (ALWAYS_ACTIVE.includes(tag)) {
-                t.active = true;
-              }
+              const t: model.Filter = {
+                name: tag,
+                active: false,
+              };
               return t;
             }),
+            active: content.active,
             url: content.url,
             codeUrl: content.codeUrl,
             urlText: content.urlText,
@@ -138,8 +134,8 @@ const App = () => {
    * Returns an array of unique filters based on the tags of the contents in the sections.
    * @returns An array of Filter objects.
    */
-  function loadFilters(): Filter[] {
-    var filtLst: Filter[] = [];
+  function loadFilters(): model.Filter[] {
+    var filtLst: model.Filter[] = [];
     sections.forEach((section) => {
       section.contents.forEach((content) => {
         content.tags?.forEach((tag) => {
@@ -165,8 +161,95 @@ const App = () => {
    * @param filtLst - An optional array of filters to get the names from. Defaults to the active filters.
    * @returns An array of names of active filters.
    */
-  function getActiveFiltersNames(filtLst: Filter[] = getActiveFilters()) {
+  function getActiveFiltersNames(filtLst: model.Filter[] = getActiveFilters()) {
     return filtLst.map((f) => f.name);
+  }
+
+  /**
+   * Toggles the active state of a filter.
+   * @param filter - The name of the filter to toggle.
+   */
+  function toggleFilter(filter: string) {
+    setFilters(
+      filters.map((f) => {
+        if (f.name === filter) {
+          f.active = !f.active;
+        }
+        return f;
+      })
+    );
+  }
+
+  function toggleDropCard(
+    content: model.Content,
+    state: boolean = !content.active
+  ) {
+    setSections(
+      sections.map((section) => {
+        section.contents.map((c) => {
+          if (c.title === content.title) {
+            c.active = state;
+          }
+          return c;
+        });
+        return section;
+      })
+    );
+  }
+
+  function expandDropCards() {
+    toggleAllDropCards(true);
+  }
+
+  function collapseDropCards() {
+    toggleAllDropCards(false);
+  }
+
+  function toggleAllDropCards(state: boolean) {
+    setSections(
+      sections.map((section) => {
+        section.contents.map((content) => {
+          content.active = state;
+          return content;
+        });
+        return section;
+      })
+    );
+  }
+
+  function clearFilters() {
+    setFilters(
+      filters.map((f) => {
+        f.active = false;
+        return f;
+      })
+    );
+  }
+
+  function filterDropCards() {
+    setSections(
+      sections.map((section) => {
+        section.contents.map((content) => {
+          if (
+            getActiveFilters().length !== 0 &&
+            getActiveFilters().every((f) =>
+              content.tags?.some((t) => t.name === f.name)
+            )
+          ) {
+            content.tagSelected = true;
+            content.active = true;
+          } else {
+            content.active = false;
+            content.tagSelected = false;
+            if (content.contentType === "dropcard-resume") {
+              content.tagSelected = true;
+            }
+          }
+          return content;
+        });
+        return section;
+      })
+    );
   }
 
   return (

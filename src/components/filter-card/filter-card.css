@@ -1,0 +1,136 @@
+.filter-card {
+  width: 100%;
+  border-radius: 20px;
+  background: #fcfbfb;
+  position: relative;
+  padding: 1em 1.8rem 1rem 1.8rem;
+  border: 2px solid #ffffff;
+  transition: 0.5s ease-out;
+  overflow: visible;
+}
+
+.filter-card-details {
+  height: 100%;
+  display: grid;
+  place-content: left;
+}
+
+/*Text*/
+.filter-card-title {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+/*Hover*/
+.filter-card:hover {
+  border-color: var(--primary-colour);
+  box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
+}
+
+.filter-card-filters {
+  display: flex;
+  margin: 1em 1em 1em 1em;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.filter-toggle {
+  cursor: pointer;
+  padding: 3px;
+  margin: 5px;
+
+  &::after {
+    content: "";
+    display: block;
+    position: relative;
+    transform: scaleX(0);
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    right: 0;
+    background: repeating-linear-gradient(
+      to right,
+      rgba(70, 70, 70, 0.61) 0px,
+      rgba(70, 70, 70, 0.61) 2px,
+      white 2px,
+      white 4px
+    );
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+}
+
+.filter-toggle.tag {
+  transition: all 0.5s ease-out;
+}
+
+.filter-toggle:hover {
+  &::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+}
+
+.filter-toggle:hover .tag {
+  transition: 0.5s ease-out;
+  transform: translateY(-4px) scale(1.1);
+}
+
+.filter-toggle.active {
+  &::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+    background: rgba(70, 70, 70, 0.61);
+  }
+}
+
+.filter-toggle.active .tag {
+  transition: 0.5s ease-out;
+  transform: translateY(-4px) scale(1.1);
+}
+
+.filter-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.filter-action {
+  margin: 0 1em 1em 1em;
+  padding: 0.2em 0.5em 0.2em 0.5em;
+  text-decoration: none;
+  border-radius: 10px;
+  font-size: 26px;
+  font-weight: 600;
+  background: var(--text-colour);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  overflow: hidden;
+}
+
+.filter-action:hover {
+  cursor: pointer;
+  animation: filterActionAnimation 0.3s ease-in-out 0s 1 normal both;
+  background: var(--primary-colour);
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  -webkit-text-fill-color: #ffffff;
+}
+
+@keyframes filterActionAnimation {
+  from {
+    background: var(--text-colour);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  to {
+    background: var(--primary-colour);
+    -webkit-background-clip: border-box;
+    background-clip: border-box;
+    -webkit-text-fill-color: #ffffff;
+    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
+  }
+}
