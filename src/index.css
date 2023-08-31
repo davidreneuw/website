@@ -4,8 +4,16 @@
   --bg-colour: #ffffff;
   --text-colour: -webkit-linear-gradient(
     225deg,
-    rgba(173, 215, 246, 1) 35%,
-    rgba(63, 142, 252, 1) 100%
+    rgb(123, 167, 255) 35%,
+    var(--primary-colour) 100%
+  );
+  --dropcard-height: 200px;
+  --dropcard-transition: all 0.5s ease-in-out;
+  --card-text-colour: rgb(68, 68, 68);
+  --section-colour: -webkit-linear-gradient(
+    112.1deg,
+    rgb(136, 135, 135) 11.4%,
+    black 70.2%
   );
 }
 
