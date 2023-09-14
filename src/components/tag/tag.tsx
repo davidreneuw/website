@@ -43,14 +43,18 @@ export function Tag(props: model.TagProps) {
   return (
     <>
       <div className="tag" data-tooltip-id={tooltipId}>
-        {iconMap.get(props.tag) || (
-          <div className="missing-tag">{props.tag.charAt(0).toUpperCase()}</div>
+        {iconMap.get(props.tag.name) || (
+          <div className="missing-tag">
+            {props.tag.name.charAt(0).toUpperCase()}
+          </div>
         )}
       </div>
       <Tooltip
         id={tooltipId}
         place="top"
-        content={props.tag.charAt(0).toUpperCase() + props.tag.slice(1)}
+        content={
+          props.tag.name.charAt(0).toUpperCase() + props.tag.name.slice(1)
+        }
       />
     </>
   );

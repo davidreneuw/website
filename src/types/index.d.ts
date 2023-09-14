@@ -1,4 +1,5 @@
 export namespace model {
+  // APP CONTENT STATE TYPES
   type Section = {
     title: string;
     id: string;
@@ -24,16 +25,8 @@ export namespace model {
     active: boolean;
   };
 
+  // APP COMPONENT PROPS TYPES
   type DropCardProps = {
-    title: string;
-    subtitle?: string;
-    content: string[];
-    tags?: Filter[];
-    active?: boolean;
-    url?: string;
-    codeUrl?: string;
-    urlText?: string;
-    locked?: boolean;
     state: Content;
     filters: Filter[];
     toggleFunc: Function;
@@ -41,13 +34,11 @@ export namespace model {
   };
 
   type CardProps = {
-    title: string;
-    content: string[];
+    state: Content;
   };
 
   type FilterCardProps = {
-    title: string;
-    content: string[];
+    state: Content;
     filters: Filter[];
     toggleFunc: Function;
     expandFunc: Function;
@@ -56,6 +47,6 @@ export namespace model {
   };
 
   type TagProps = {
-    tag: string;
+    tag: Filter;
   };
 }

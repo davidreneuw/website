@@ -38,6 +38,7 @@ hr {
   margin: 0.5em 0 0.5em 0;
   background: var(--text-colour);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -46,6 +47,7 @@ hr {
   animation: navItemHover 0.3s ease-in-out 0s 1 normal both;
   background: var(--primary-colour);
   -webkit-background-clip: border-box;
+  background-clip: border-box;
   -webkit-text-fill-color: #ffffff;
 }
 
@@ -143,6 +145,7 @@ hr {
   font-weight: 600;
   background: var(--section-colour);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -153,6 +156,7 @@ hr {
   bottom: 2px;
   right: 8px;
   -webkit-background-clip: border-box;
+  background-clip: border-box;
   -webkit-text-fill-color: var(--primary-colour);
 }
 
@@ -165,7 +169,6 @@ hr {
 
 .section-divider {
   display: flex;
-  justify-content: end;
   align-items: right;
   border: none;
   margin: 0 0 0 1.5em;

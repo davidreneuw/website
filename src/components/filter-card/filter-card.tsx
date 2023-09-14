@@ -6,8 +6,8 @@ export function FilterCard(props: model.FilterCardProps) {
   return (
     <div className="filter-card">
       <div className="filter-card-details">
-        <span className="filter-card-title">{props.title}</span>
-        {props.content.map((c: string) => (
+        <span className="filter-card-title">{props.state.title}</span>
+        {props.state.content.map((c: string) => (
           <p className="card-body">{c}</p>
         ))}
         <div className="filter-card-filters">
@@ -16,7 +16,7 @@ export function FilterCard(props: model.FilterCardProps) {
               className={f.active ? "filter-toggle active" : "filter-toggle"}
               onClick={() => props.toggleFunc(f.name)}
             >
-              <Tag tag={f.name} />
+              <Tag tag={f} />
             </div>
           ))}
         </div>

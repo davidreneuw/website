@@ -7,7 +7,7 @@ import "./dropcard.css";
 export function DropCard(props: model.DropCardProps) {
   function getClass(baseClass: string) {
     var cardClass = baseClass;
-    if (props.locked || props.state.active) {
+    if (props.state.locked || props.state.active) {
       cardClass += " active";
     }
     if (props.state.tagSelected) {
@@ -23,31 +23,31 @@ export function DropCard(props: model.DropCardProps) {
   return (
     <div className={getClass("dropcard")} onClick={toggle}>
       <div className="dropcard-header">
-        {props.urlText ? (
+        {props.state.urlText ? (
           <div className="header-text-resume">
-            <span className="dropdown-title">{props.title}</span>
-            {props.subtitle ? (
-              <span className="dropdown-subtitle">{props.subtitle}</span>
+            <span className="dropdown-title">{props.state.title}</span>
+            {props.state.subtitle ? (
+              <span className="dropdown-subtitle">{props.state.subtitle}</span>
             ) : (
               <></>
             )}
           </div>
         ) : (
           <div className="header-text">
-            <span className="dropdown-title">{props.title}</span>
-            {props.subtitle ? (
-              <span className="dropdown-subtitle">{props.subtitle}</span>
+            <span className="dropdown-title">{props.state.title}</span>
+            {props.state.subtitle ? (
+              <span className="dropdown-subtitle">{props.state.subtitle}</span>
             ) : (
               <></>
             )}
           </div>
         )}
         <div className="tags">
-          {props.tags?.map((tag: model.Filter) => (
-            <Tag tag={tag.name} />
+          {props.state.tags?.map((tag: model.Filter) => (
+            <Tag tag={tag} />
           ))}
         </div>
-        {props.urlText ? (
+        {props.state.urlText ? (
           <div />
         ) : (
           <div className="dropdown">
@@ -57,15 +57,15 @@ export function DropCard(props: model.DropCardProps) {
       </div>
       <div className={getClass("dropcard-details")} id="details">
         <div className="content-container">
-          {props.content.map((c: string) => (
+          {props.state.content.map((c: string) => (
             <p className="dropdown-body">{c}</p>
           ))}
         </div>
         <div className="url-container">
-          {props.codeUrl ? (
+          {props.state.codeUrl ? (
             <a
               className={getClass("url-button code-url")}
-              href={props.codeUrl}
+              href={props.state.codeUrl}
               target="_blank"
               rel="noreferrer noopener"
             >
@@ -74,20 +74,20 @@ export function DropCard(props: model.DropCardProps) {
           ) : (
             <></>
           )}
-          {props.url ? (
+          {props.state.url ? (
             <a
               className={getClass("url-button project-url")}
-              href={props.url}
+              href={props.state.url}
               target="_blank"
               rel="noreferrer noopener"
             >
-              {props.urlText ? (
+              {props.state.urlText ? (
                 <a
                   href="./davidrene_resume.pdf"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
-                  {props.urlText}
+                  {props.state.urlText}
                 </a>
               ) : (
                 <span>View project</span>

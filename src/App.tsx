@@ -33,20 +33,13 @@ const App = () => {
       case "card":
         return (
           <div className="card-container">
-            <Card title={content.title} content={content.content} />
+            <Card state={content} />
           </div>
         );
       case "dropcard":
         return (
           <div className="dropcard-container">
             <DropCard
-              title={content.title}
-              subtitle={content.subtitle}
-              content={content.content}
-              tags={content.tags}
-              active={false}
-              url={content.url}
-              codeUrl={content.codeUrl}
               state={content}
               filters={filters}
               toggleFunc={(state: boolean) => {
@@ -59,15 +52,6 @@ const App = () => {
         return (
           <div className="dropcard-container">
             <DropCard
-              title={content.title}
-              subtitle={content.subtitle}
-              content={content.content}
-              tags={content.tags}
-              active={true}
-              url={content.url}
-              codeUrl={content.codeUrl}
-              urlText="View resume"
-              locked={true}
               state={content}
               filters={filters}
               toggleFunc={(state: boolean) => {
@@ -80,8 +64,7 @@ const App = () => {
         return (
           <div className="card-container">
             <FilterCard
-              title={content.title}
-              content={content.content}
+              state={content}
               filters={filters}
               toggleFunc={toggleFilter}
               expandFunc={expandDropCards}
@@ -180,6 +163,11 @@ const App = () => {
     );
   }
 
+  /**
+   * Toggles the active state of a content item and updates the sections state accordingly.
+   * @param content - The content item to toggle.
+   * @param state - The new state to set for the content item. Defaults to the opposite of the current state.
+   */
   function toggleDropCard(
     content: model.Content,
     state: boolean = !content.active
@@ -197,14 +185,24 @@ const App = () => {
     );
   }
 
+  /**
+   * Expands all drop cards by toggling their state to true.
+   */
   function expandDropCards() {
     toggleAllDropCards(true);
   }
 
+  /**
+   * Collapses all drop cards by toggling them off.
+   */
   function collapseDropCards() {
     toggleAllDropCards(false);
   }
 
+  /**
+   * Toggles the active state of all content cards in all sections.
+   * @param state - The new active state to set for all content cards.
+   */
   function toggleAllDropCards(state: boolean) {
     setSections(
       sections.map((section) => {
@@ -217,6 +215,9 @@ const App = () => {
     );
   }
 
+  /**
+   * Clears all active filters by setting their 'active' property to false.
+   */
   function clearFilters() {
     setFilters(
       filters.map((f) => {
@@ -226,7 +227,11 @@ const App = () => {
     );
   }
 
-  function filterDropCards() {
+  /**
+   * Filters the drop cards based on the active filters and updates the state of the sections.
+   * @returns void
+   */
+  function filterDropCards(): void {
     setSections(
       sections.map((section) => {
         section.contents.map((content) => {

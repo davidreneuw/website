@@ -5,8 +5,8 @@ export function Card(props: model.CardProps) {
   return (
     <div className="card">
       <div className="card-details">
-        <span className="card-title">{props.title}</span>
-        {props.content.map((c: string) => (
+        <span className="card-title">{props.state.title}</span>
+        {props.state.content.map((c: string) => (
           <p className="card-body">{c}</p>
         ))}
       </div>
