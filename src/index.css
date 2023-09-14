@@ -7,7 +7,7 @@
     rgb(123, 167, 255) 35%,
     var(--primary-colour) 100%
   );
-  --dropcard-height: 200px;
+  --dropcard-height: 300px;
   --dropcard-transition: all 0.5s ease-in-out;
   --card-text-colour: rgb(68, 68, 68);
   --section-colour: -webkit-linear-gradient(

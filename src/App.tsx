@@ -49,6 +49,7 @@ const App = () => {
           </div>
         );
       case "dropcard-resume":
+        content.urlText = "View resume";
         return (
           <div className="dropcard-container">
             <DropCard

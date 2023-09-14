@@ -24,6 +24,7 @@
   font-size: 26px;
   font-weight: 600;
   transition: all 0.5s ease-in-out;
+  justify-content: flex-end;
 }
 
 .dropcard.active .dropdown-arrow {
