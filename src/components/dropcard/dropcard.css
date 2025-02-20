@@ -5,7 +5,7 @@
   position: relative;
   padding: 0em 1.8rem 1em 1.8rem;
   border: 2px solid #ffffff;
-  transition: 0.5s ease-out;
+  transition: 0.2s ease-out;
   overflow: visible;
 }
 
@@ -168,12 +168,19 @@
   transition: var(--dropcard-transition);
 }
 
+@media screen and (max-width: 1000px) {
+  .dropcard-header {
+    flex-wrap: wrap;
+  }
+}
+
 @keyframes urlButtonHover {
   from {
     background: var(--text-colour);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+
   to {
     background: var(--primary-colour);
     -webkit-background-clip: border-box;

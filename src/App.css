@@ -1,3 +1,41 @@
+/* CSS Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote::before,
+blockquote::after,
+q::before,
+q::after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
 h2 {
   font-weight: normal;
 }
@@ -9,24 +47,35 @@ a {
 hr {
   margin: 2em 0 2em 0;
   color: black;
-  width: 100%;
+  width: 80%;
 }
 
 .content {
-  display: flex;
-  flex-direction: row;
-  padding: 10 10 10 10;
-  margin: 2em 4em 2em 1em;
+  display: grid;
+  grid-template-columns: 25vw 70vw;
+  grid-template-areas: "nav main";
   background-color: var(--bg-colour);
 }
 
 .navbar {
+  grid-area: nav;
+}
+
+.navbarFixedContainer {
   position: fixed;
-  margin: 2em 0 0 3em;
   display: flex;
   flex-direction: column;
-  width: 15%;
-  height: 100%;
+  justify-content: center;
+  align-items: center;
+  width: 25vw;
+}
+
+.navbarContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 50px;
+  width: 100%;
 }
 
 .navItem {
@@ -44,7 +93,7 @@ hr {
 
 .navItem:hover {
   cursor: pointer;
-  animation: navItemHover 0.3s ease-in-out 0s 1 normal both;
+  animation: navItemHover 0.1s ease-in-out 0s 1 normal both;
   background: var(--primary-colour);
   -webkit-background-clip: border-box;
   background-clip: border-box;
@@ -60,50 +109,64 @@ hr {
 }
 
 .main {
-  width: 70%;
-  margin: 5em 0 0 25em;
+  grid-area: main;
   display: flex;
   flex-direction: column;
 }
 
 .container {
-  display: flex;
-  flex-direction: row;
+  margin-top: 5rem;
+  margin-right: 10rem;
+  display: grid;
+  width: 90%;
+  grid-template-columns: 3fr 1fr;
+  grid-template-rows: auto 100px;
+  grid-template-areas:
+    "title ."
+    "subtitle pic"
+    "subtitle pic"
+    "subtitle pic"
+    "signature pic"
+    "social-media pic"
+  ;
 }
 
 .profile-picture {
-  width: 20em;
-  height: 30em;
   border-radius: 100px;
   border: 5px;
+  width: 320px;
+  height: auto;
   object-fit: cover;
   box-shadow: 0 10px 18px 0 rgba(0, 0, 0, 0.5);
 }
 
 .profile-picture-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 0 0 3em;
-}
-
-.landing-container {
-  margin: 0 3em 0 0;
+  grid-area: pic;
 }
 
 .landing-title-container {
+  grid-area: title;
   width: fit-content;
   justify-content: left;
   align-items: left;
 }
 
 .landing-title {
+  width: fit-content;
   justify-content: left;
-  align-content: baseline;
+}
+
+.landing-subtitle-container {
+  grid-area: subtitle;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-right: 10%;
 }
 
 .landing-subtitle {
   text-align: justify;
+  text-wrap: wrap;
 }
 
 .line-1 {
@@ -120,15 +183,20 @@ hr {
     blinkTextCursor 700ms steps(14) infinite normal;
 }
 
+.landing-signature-container {
+  grid-area: signature;
+}
+
 .signature {
   margin: 1em 0 0 0;
 }
 
 .social-media-icon {
-  margin: 2em 1em 0 0em;
+  margin: 0 1em 0 0em;
 }
 
 .social-media-list {
+  grid-area: social-media;
   display: flex;
   flex-direction: row;
 }
@@ -179,10 +247,72 @@ hr {
   height: 1px;
 }
 
+@media screen and (max-width: 1000px) {
+  .main {
+    padding-left: 20px;
+    padding-right: 10px;
+  }
+
+  .content {
+    display: grid;
+    width: 100vw;
+    grid-template-columns: auto;
+    grid-template-areas: "main";
+    background-color: var(--bg-colour);
+  }
+
+  .container {
+    margin-top: 2.5rem;
+    display: grid;
+    grid-template-columns: 90vw;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "title"
+      "pic"
+      "subtitle"
+      "subtitle"
+      "subtitle"
+      "signature"
+      "social-media"
+    ;
+  }
+
+  .landing-title-container {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .profile-picture-container {
+    margin: 1em auto;
+  }
+
+  .landing-subtitle-container {
+    padding-right: 0;
+  }
+
+  .landing-subtitle {
+    margin: 10px 0;
+  }
+
+  .section {
+    width: 90vw;
+  }
+
+  .card-container {
+    margin: 1em 0 0 0;
+  }
+
+  .dropcard-container {
+    margin: 1em 0 0 0;
+  }
+
+}
+
 @keyframes typewriter {
   from {
     width: 0%;
   }
+
   to {
     width: 100%;
   }
@@ -192,6 +322,7 @@ hr {
   from {
     border-right-color: var(--primary-colour);
   }
+
   to {
     border-right-color: transparent;
   }
@@ -203,6 +334,7 @@ hr {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+
   to {
     background: var(--primary-colour);
     -webkit-background-clip: border-box;

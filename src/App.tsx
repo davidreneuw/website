@@ -259,43 +259,49 @@ const App = () => {
   }
 
   return (
-    <div className="content" id="home">
+    <div className="content">
       <div className="navbar">
-        {sections.map((section) => (
-          <a className="navItem" href={"#" + section.id}>
-            {section.title}
-          </a>
-        ))}
+        <div className="navbarFixedContainer">
+          <div className="navbarContainer">
+            {sections.map((section) => (
+              <a className="navItem" href={"#" + section.id}>
+                {section.title}
+              </a>
+            ))}
+          </div>
+        </div>
       </div>
       <div className="main" id="home">
         <div className="container">
-          <div className="landing-container">
-            <div className="landing-title-container">
-              <h1 className="landing-title anim-typewriter line-1">
-                {Info.landing.title}
-              </h1>
-            </div>
+          <div className="landing-title-container">
+            <h1 className="landing-title anim-typewriter line-1">
+              {Info.landing.title}
+            </h1>
+          </div>
+          <div className="landing-subtitle-container">
             {Info.landing.subtitles.map((subtitle) => (
               <h2 className="landing-subtitle">{subtitle}</h2>
             ))}
+          </div>
+          <div className="landing-signature-container">
             <img
               src={"../assets/" + Info.landing.signatureName}
               alt="Signature"
               className="signature"
               loading="lazy"
             />
-            <div className="social-media-list">
-              {Info.landing.socialMedia.map((socialMedia) => (
-                <SocialIcon
-                  url={socialMedia.url}
-                  bgColor={getComputedStyle(
-                    document.documentElement
-                  ).getPropertyValue("--primary-colour")}
-                  label={socialMedia.name}
-                  className="social-media-icon"
-                />
-              ))}
-            </div>
+          </div>
+          <div className="social-media-list">
+            {Info.landing.socialMedia.map((socialMedia) => (
+              <SocialIcon
+                url={socialMedia.url}
+                bgColor={getComputedStyle(
+                  document.documentElement
+                ).getPropertyValue("--primary-colour")}
+                label={socialMedia.name}
+                className="social-media-icon"
+              />
+            ))}
           </div>
           <div className="profile-picture-container">
             <img
