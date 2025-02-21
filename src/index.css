@@ -2,19 +2,16 @@
   --primary-colour: #3f8efc;
   --secondary-colour: #00ff00;
   --bg-colour: #ffffff;
-  --text-colour: -webkit-linear-gradient(
-    225deg,
-    rgb(123, 167, 255) 35%,
-    var(--primary-colour) 100%
-  );
+  --text-colour: -webkit-linear-gradient(225deg,
+      rgb(123, 167, 255) 35%,
+      var(--primary-colour) 100%);
   --dropcard-height: 300px;
-  --dropcard-transition: all 0.5s ease-in-out;
+
+  --dropcard-transition: max-height 0.5s ease-in-out;
   --card-text-colour: rgb(68, 68, 68);
-  --section-colour: -webkit-linear-gradient(
-    112.1deg,
-    rgb(136, 135, 135) 11.4%,
-    black 70.2%
-  );
+  --section-colour: -webkit-linear-gradient(112.1deg,
+      rgb(136, 135, 135) 11.4%,
+      black 70.2%);
 }
 
 html {

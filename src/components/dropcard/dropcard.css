@@ -4,7 +4,7 @@
   background: #fcfbfb;
   position: relative;
   padding: 0em 1.8rem 1em 1.8rem;
-  border: 2px solid #ffffff;
+  border: 2px solid #e7e7e7fa;
   transition: 0.2s ease-out;
   overflow: visible;
 }
@@ -83,6 +83,7 @@
   grid-row: 1;
   border-right: 1px solid rgb(189, 189, 189);
   padding: 0 1.7em 0 0;
+  margin-right: 1em;
 }
 
 .header-text-resume {
@@ -143,7 +144,7 @@
   background-clip: text;
   -webkit-text-fill-color: transparent;
   transition: var(--dropcard-transition);
-  overflow: hidden;
+  text-wrap: nowrap;
 }
 
 .project-url {
@@ -156,7 +157,7 @@
 
 .url-button:hover {
   cursor: pointer;
-  animation: urlButtonHover 0.3s ease-in-out 0s 1 normal both;
+  animation: urlButtonHover 0.1s ease-in-out 0s 1 normal both;
   background: var(--primary-colour);
   -webkit-background-clip: border-box;
   background-clip: border-box;
@@ -170,7 +171,42 @@
 
 @media screen and (max-width: 1000px) {
   .dropcard-header {
-    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .header-text {
+    border-right: none;
+  }
+
+  .tags {
+    align-items: start;
+  }
+
+  .dropcard-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+  }
+
+  .url-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .dropdown {
+    margin-left: auto;
+  }
+
+  .dropcard-details.active {
+    max-height: fit-content;
+  }
+
+  .url-button.active {
+    max-height: fit-content;
   }
 }
 

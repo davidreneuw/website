@@ -28,7 +28,9 @@
       "title": "Home",
       "id": "home",
       "contentType": "card",
-      "contents": [""]
+      "contents": [
+        ""
+      ]
     },
     {
       "title": "About",
@@ -69,7 +71,14 @@
         {
           "title": "Programmer-analyst @ Shared Services Canada",
           "subtitle": "January 2022 - Present",
-          "tags": ["blazor", "dotnet", "azure", "mudblazor", "csharp", "css"],
+          "tags": [
+            "blazor",
+            "dotnet",
+            "azure",
+            "mudblazor",
+            "csharp",
+            "css"
+          ],
           "contentType": "dropcard",
           "content": [
             "Worked on a government-wide analytics platform for Canadian scientists using Blazor, C#, Azure and MudBlazor. I did full-stack work, from front-end UI design and edits to back-end API development and feature addition.",
@@ -84,7 +93,12 @@
           "content": [
             "Manage and provide an analysis of data collected by satellites SCISAT-1 and Alouette through a web application. Geographical analysis as well as chronological analysis."
           ],
-          "tags": ["python", "django", "css", "html"],
+          "tags": [
+            "python",
+            "django",
+            "css",
+            "html"
+          ],
           "codeUrl": "https://github.com/asc-csa/Scisat-App",
           "url": "https://donnees-data.asc-csa.gc.ca:8888/scisat/"
         },
@@ -95,7 +109,11 @@
           "content": [
             "Maintain and develop a network used for the acquisition of data in a study of the effects of the Ottawa light rail train on the local geomagnetic field."
           ],
-          "tags": ["bash", "python", "linux"]
+          "tags": [
+            "bash",
+            "python",
+            "linux"
+          ]
         },
         {
           "title": "Math Teaching Assistant @ University of Waterloo",
@@ -112,7 +130,10 @@
           "content": [
             "Created a genetic algorithm to improve the structure of the paradigm used for data acquisition. Created a mobile application on Android that will allow better diagnosis and prescriptions for Schizophrenia patients."
           ],
-          "tags": ["python", "matlab"]
+          "tags": [
+            "python",
+            "matlab"
+          ]
         }
       ]
     },
@@ -122,14 +143,32 @@
       "contentType": "card",
       "contents": [
         {
-          "title": "This website!",
+          "title": "Personal",
           "content": [
             "This website was built using React and TypeScript. It is hosted on Vercel.",
             "I built it and designed the front-end all myself without the use of a front-end framework. I built it and designed the front-end all myself without the use of a front-end framework."
           ],
           "contentType": "dropcard",
-          "tags": ["react", "typescript", "css", "vercel"],
+          "tags": [
+            "react",
+            "typescript",
+            "css",
+            "vercel"
+          ],
           "codeUrl": "https://github.com/davidreneuw/website"
+        },
+        {
+          "title": "Wedding website",
+          "content": [
+            "Built this plain HTML/CSS website for the wedding of my partner's sister in 2024."
+          ],
+          "contentType": "dropcard",
+          "tags": [
+            "html",
+            "css"
+          ],
+          "codeUrl": "https://github.com/davidreneuw/KerenAndCarlWedding",
+          "url": "https://kcwedding.davidrene.ca"
         }
       ]
     },
@@ -147,7 +186,9 @@
             "Minor in Astrophysics and minor in German.",
             "I was also the Vice-President Finances of the Science student association for 2 terms."
           ],
-          "tags": ["python"]
+          "tags": [
+            "python"
+          ]
         },
         {
           "title": "DEC Mathematics and Computer Science @ CÉGEP Limoilou",
@@ -157,7 +198,9 @@
             "Completed a \"DEC\" (Diplôme d'études collégiales) in Mathematics and Computer Science. I was taught data structures, algorithms, object-oriented programming in Java, as well as a focus on agile development and project management.",
             "Also learned linear algebra, calculus, discrete mathematics, physics and philosophy at a university level."
           ],
-          "tags": ["java"]
+          "tags": [
+            "java"
+          ]
         }
       ]
     },
@@ -167,24 +210,12 @@
       "contents": [
         {
           "title": "View my resume",
-          "content": ["You may view my most recent resume here."],
+          "content": [
+            "You may view my most recent resume here."
+          ],
           "contentType": "dropcard-resume",
           "url": "./resume.pdf",
           "locked": true
-        }
-      ]
-    },
-    {
-      "title": "Contact me",
-      "id": "contact",
-      "contents": [
-        {
-          "title": "If you would like to contact me...",
-          "content": [
-            "Please reach out to me on LinkedIn, GitHub or by email. You may find these links in the home section.",
-            "You can also reach me at 5819864960"
-          ],
-          "contentType": "card"
         }
       ]
     }

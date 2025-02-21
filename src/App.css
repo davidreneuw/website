@@ -52,7 +52,7 @@ hr {
 
 .content {
   display: grid;
-  grid-template-columns: 25vw 70vw;
+  grid-template-columns: 20vw 70vw;
   grid-template-areas: "nav main";
   background-color: var(--bg-colour);
 }
@@ -67,7 +67,7 @@ hr {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 25vw;
+  width: 20vw;
 }
 
 .navbarContainer {
@@ -112,6 +112,7 @@ hr {
   grid-area: main;
   display: flex;
   flex-direction: column;
+  padding-bottom: 100px;
 }
 
 .container {
@@ -251,6 +252,7 @@ hr {
   .main {
     padding-left: 20px;
     padding-right: 10px;
+    overflow: hidden;
   }
 
   .content {
